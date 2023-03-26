@@ -10,5 +10,47 @@
     justify-content: center;
     align-items: center;
     height: 60px;
-    background: #e8e6e6;
+    background: #f6f6f6;
+}
+
+.wrapper{
+    display: flex;
+    height: 100vh;
+    background-color: crimson;
+}
+
+.wrapper .dashboard{
+    width: 223px;
+    display: flex;
+    justify-content: center;
+    background: #fff;
+}
+
+.dashboard-list{
+    width: 100%;
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.dashboard-list .list-item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px;
+    gap: 15px;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+
+.dashboard-list .list-item:hover{
+    background-color: #F0F0F0;
+}
+
+.users{
+    width: 20px;
+}
+
+.user-about{
+    padding: 31px;
+    background: blue;
 }
