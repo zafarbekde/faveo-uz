@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../css/LoginPage.css'
+import HomePage from "./HomePage";
 
 
 const LoginPage = () => {
@@ -54,13 +55,6 @@ const LoginPage = () => {
   );
 };
 
-const HomePage = () => {
-  return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      <p>This is where you can see your dashboard or profile information</p>
-    </div>
-  );
-};
+
 
 export default LoginPage;

@@ -1,11 +1,25 @@
 import React from "react";
-import './css/Home.css'
+import '../css/Home.css'
 
 const HomePage = () => {
   return (
-    <div className="home">
-      <h1 className="head">Welcome to the Home Page</h1>
-      <p>This is where you can see your dashboard or profile information</p>
+    <div className="home-page">
+      <h1 className="head">Faveo</h1>
+
+      <div className="wrapper">
+        <div className="dashboard">
+            <ul className="dashboard-list">
+              <li className="list-item">Mange Users </li>
+              <li className="list-item">Categories </li>
+              <li className="list-item">Products </li>
+              <li className="list-item">Orders </li>
+            </ul>
+        </div>
+
+        <div className="user-about">
+
+        </div>
+      </div>
     </div>
   );
 };

@@ -8,5 +8,8 @@
 
 body{
     height: 100vh;
- 
+}
+
+.home {
+    background: crimson;
 }

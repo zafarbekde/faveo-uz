@@ -1,6 +1,14 @@
-.head{
+.home{
     display: flex;
     justify-content: center;
     align-items: center;
     background: crimson;
+}
+
+.head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    background: #e8e6e6;
 }
