@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UserTable from "../pages/UserTable";
+import EditUserForm from "../pages/EditUserForm";
+import AddUserForm from "../pages/AddUserForm";
 
 const MangerUsersMenu = () => {
   const [users, setUsers] = useState([]);
