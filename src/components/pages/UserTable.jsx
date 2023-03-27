@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const UserTable = ({ users, editRow, deleteUser }) => {
+const UserTable = ({ editRow, deleteUser }) => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // Retrieve users from local storage when component mounts
+    const storedUsers = JSON.parse(localStorage.getItem("users"));
+    if (storedUsers) {
+      setUsers(storedUsers);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save users to local storage when users state changes
+    localStorage.setItem("users", JSON.stringify(users));
+  }, [users]);
+
   return (
     <table>
       <thead>
