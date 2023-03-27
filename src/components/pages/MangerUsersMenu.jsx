@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UserTable from "../pages/UserTable";
 
-const ManageUsersMenu = () => {
-  const initialFormState = { id: null, name: "", username: "", email: "" };
-
+const MangerUsersMenu = () => {
   const [users, setUsers] = useState([]);
-  const [currentUser, setCurrentUser] = useState(initialFormState);
   const [editing, setEditing] = useState(false);
+  const initialFormState = { id: null, name: "", username: "" };
+  const [currentUser, setCurrentUser] = useState(initialFormState);
+
+  useEffect(() => {
+    const storedUsers = JSON.parse(localStorage.getItem("users"));
+    if (storedUsers) {
+      setUsers(storedUsers);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("users", JSON.stringify(users));
+  }, [users]);
 
   const addUser = (user) => {
     user.id = users.length + 1;
@@ -14,6 +24,7 @@ const ManageUsersMenu = () => {
   };
 
   const deleteUser = (id) => {
+    setEditing(false);
     setUsers(users.filter((user) => user.id !== id));
   };
 
@@ -24,41 +35,33 @@ const ManageUsersMenu = () => {
 
   const editRow = (user) => {
     setEditing(true);
-    setCurrentUser({ id: user.id, name: user.name, username: user.username, email: user.email });
+    setCurrentUser({ id: user.id, name: user.name, username: user.username });
+  };
+
+  const resetForm = () => {
+    setEditing(false);
+    setCurrentUser(initialFormState);
   };
 
   return (
     <div>
-      <h2>Manage Users</h2>
+      <h1>React CRUD App with Local Storage</h1>
       <div>
-        <h3>Add User</h3>
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            if (!currentUser.name || !currentUser.username || !currentUser.email) return;
-            if (editing) {
-              updateUser(currentUser.id, currentUser);
-            } else {
-              addUser(currentUser);
-            }
-            setCurrentUser(initialFormState);
-          }}
-        >
-          <label>Name</label>
-          <input type="text" name="name" value={currentUser.name} onChange={(event) => setCurrentUser({ ...currentUser, name: event.target.value })} />
-          <label>Username</label>
-          <input type="text" name="username" value={currentUser.username} onChange={(event) => setCurrentUser({ ...currentUser, username: event.target.value })} />
-          <label>Email</label>
-          <input type="email" name="email" value={currentUser.email} onChange={(event) => setCurrentUser({ ...currentUser, email: event.target.value })} />
-          <button type="submit">{editing ? "Update" : "Add"}</button>
-        </form>
+        {editing ? (
+          <EditUserForm
+            currentUser={currentUser}
+            updateUser={updateUser}
+            resetForm={resetForm}
+          />
+        ) : (
+          <AddUserForm addUser={addUser} />
+        )}
       </div>
       <div>
-        <h3>User List</h3>
-        <UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
-        </div>
+        <UserTable editRow={editRow} deleteUser={deleteUser} users={users} />
+      </div>
     </div>
   );
 };
 
-export default ManageUsersMenu;
+export default MangerUsersMenu;
