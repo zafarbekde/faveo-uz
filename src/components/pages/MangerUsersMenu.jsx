@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import UserTable from "../pages/UserTable";
-import EditUserForm from "../pages/EditUserForm";
-import AddUserForm from "../pages/AddUserForm";
+import EditUserForm from "./EditUserForm";
+import AddUserForm from "./AddUserForm";
 
-const MangerUsersMenu = () => {
+const MangerUserMenu = () => {
   const [users, setUsers] = useState([]);
   const [editing, setEditing] = useState(false);
   const initialFormState = { id: null, name: "", username: "" };
@@ -66,4 +66,4 @@ const MangerUsersMenu = () => {
   );
 };
 
-export default MangerUsersMenu;
+export default MangerUserMenu;
