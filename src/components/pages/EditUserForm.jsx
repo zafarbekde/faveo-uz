@@ -34,6 +34,29 @@ const EditUserForm = ({ currentUser, updateUser, setEditing }) => {
         value={user.username}
         onChange={handleInputChange}
       />
+      <label>Email</label>
+      <input
+        type="text"
+        name="email"
+        value={user.email}
+        onChange={handleInputChange}
+      />
+
+      <label>Birthday</label>
+      <input
+        type="text"
+        name="birthday"
+        value={user.birthday}
+        onChange={handleInputChange}
+      />
+
+      <label>Phone</label>
+      <input
+        type="text"
+        name="phone"
+        value={user.phone}
+        onChange={handleInputChange}
+      />
       <button>Update user</button>
       <button type="button" onClick={() => setEditing(false)}>
         Cancel

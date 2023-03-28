@@ -6,7 +6,7 @@ import AddUserForm from "./AddUserForm";
 const MangerUserMenu = () => {
   const [users, setUsers] = useState([]);
   const [editing, setEditing] = useState(false);
-  const initialFormState = { id: null, name: "", username: "" };
+  const initialFormState = { id: null, name: "", username: "",  email: "",  birthday: "",  phone: "" };
   const [currentUser, setCurrentUser] = useState(initialFormState);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const MangerUserMenu = () => {
 
   const editRow = (user) => {
     setEditing(true);
-    setCurrentUser({ id: user.id, name: user.name, username: user.username });
+    setCurrentUser({ id: user.id, name: user.name, username: user.username, email: user.email, birthday: user.birthday, phone: user.phone });
   };
 
   const resetForm = () => {
