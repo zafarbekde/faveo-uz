@@ -47,7 +47,6 @@ const MangerUserMenu = () => {
 
   return (
     <div>
-      <h1>React CRUD App with Local Storage</h1>
       <div>
         {editing ? (
           <EditUserForm
