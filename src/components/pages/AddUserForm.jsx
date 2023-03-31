@@ -17,7 +17,8 @@ const AddUserForm = ({ addUser }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div style={{position: 'fixed', top:"0", "left": "0", width: '100%', height: '100vh', display: 'flex', 'justifyContent': 'center', alignItems: 'center', backgroundColor: "black"}}>
+    <form onSubmit={handleSubmit} style={{ "padding": "20px", "borderRadius": "10px", backgroundColor: "white", display: 'flex', "flexDirection": "column", gap: "10px" }}>
       <label>Name</label>
       <input
         type="text"
@@ -58,6 +59,8 @@ const AddUserForm = ({ addUser }) => {
       />
       <button>Add new user</button>
     </form>
+
+    </div>
   );
 };
 

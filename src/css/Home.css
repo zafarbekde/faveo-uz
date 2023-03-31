@@ -16,14 +16,14 @@
 .wrapper{
     display: flex;
     height: 100vh;
-    background-color: crimson;
+    background-color: black;
 }
 
 .wrapper .dashboard{
     width: 223px;
     display: flex;
     justify-content: center;
-    background: #fff;
+    background: #FBFBFB;
 }
 
 .dashboard-list{
@@ -51,6 +51,7 @@
 }
 
 .user-about{
+    width: 100%;
     padding: 31px;
-    background: blue;
+    background: #fff;
 }

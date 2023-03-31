@@ -1,3 +1,113 @@
-.user-table{
-    background: crimson;
-}
+/* UserTable styles */
+.UserTable {
+    width: 100%;
+    margin: 1rem 0;
+    border-collapse: collapse;
+  }
+  
+  .UserTable th,
+  .UserTable td {
+    padding: 0.8rem 40px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: #7e7e7e;
+  }
+  
+  .UserTable th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+  
+  .UserTable tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .UserTable .edit-icon {
+    color: #2196F3;
+    cursor: pointer;
+    margin-right: 0.5rem;
+  }
+  
+  /* EditUserModal styles */
+  .EditUserModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .EditUserModal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  .EditUserModal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .EditUserModal-close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .EditUserModal-close:hover,
+  .EditUserModal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .EditUserModal-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+  
+  .EditUserModal-label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .EditUserModal-input {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 1rem;
+  }
+  
+  .EditUserModal-input:focus {
+    outline: none;
+    border-color: #2196F3;
+  }
+  
+  .EditUserModal-button {
+    background-color: #2196F3;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .EditUserModal-button:hover {
+    background-color: #0d8bf2;
+  }
+  
+  .EditUserModal-button:active {
+    background-color: #0b74ba;
+  }
+  
