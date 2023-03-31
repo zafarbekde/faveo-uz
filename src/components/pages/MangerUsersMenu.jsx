@@ -65,8 +65,14 @@ const MangerUserMenu = () => {
       </div>
       {
         editing && createPortal(
-          <AddUserForm/>, 
+          <AddUserForm addUser={addUser}/>, 
           document.getElementById("modal-root")
+        )  (
+          <EditUserForm
+          currentUser={currentUser}
+          updateUser={updateUser}
+          resetForm={resetForm}
+        />
         )
       }
     </div>
