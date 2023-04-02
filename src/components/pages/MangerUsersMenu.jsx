@@ -10,7 +10,7 @@ const MangerUserMenu = () => {
   const [editing, setEditing] = useState(false);
   const initialFormState = { id: null, name: "", username: "", email: "", birthday: "", phone: "" };
   const [currentUser, setCurrentUser] = useState(initialFormState);
-  const [isOpen, setIsOpen] = useState(false)
+ 
 
   useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem("users"));
@@ -53,7 +53,7 @@ const MangerUserMenu = () => {
       <div>
         {editing ? (
           <EditUserForm
-            open={isOpen}
+         
             currentUser={currentUser}
             updateUser={updateUser}
             resetForm={resetForm}

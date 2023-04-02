@@ -1,47 +1,57 @@
-import React from "react";
-import '../../css/UserTable.css'
-import { useState } from "react";
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+import EditUserForm from '../pages/EditUserForm';
 
-const UserTable = ({ editRow, deleteUser, users }) => {
+const UserTable = ({ users, onEditUser }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
-  
+  const handleEditUser = (user) => {
+    setCurrentUser(user);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setCurrentUser(null);
+  };
 
   return (
-    <table className="UserTable">
-      <thead >
-        <tr>
-          <th> Id</th>
-          <th>Name</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Birthday</th>
-          <th>Phone</th>
-          <th>Role</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.length > 0 ? (
-          users.map((user) => (
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>User Name</th>
+            <th>User Surname</th>
+            <th>User Email</th>
+            <th>User Birthday</th>
+            <th>User Phones</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
               <td>{user.name}</td>
-              <td>{user.username}</td>
+              <td>{user.surname}</td>
               <td>{user.email}</td>
               <td>{user.birthday}</td>
-              <td>{user.phone}</td>
+              <td>{user.phones.join(', ')}</td>
               <td>
-                <button  onClick={() => editRow(user)}>Edit</button>
-                <button onClick={() => deleteUser(user.id)}>Delete</button>
+                <button onClick={() => handleEditUser(user)}>Edit</button>
               </td>
             </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan={7}>No users</td>
-          </tr>
+          ))}
+        </tbody>
+      </table>
+      {isModalOpen &&
+        ReactDOM.createPortal(
+          <EditUserForm user={currentUser} onClose={handleCloseModal} onSave={onEditUser} />,
+          document.getElementById('modal-root')
         )}
-      </tbody>
-    </table>
+    </div>
   );
 };
 
