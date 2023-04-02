@@ -17,7 +17,7 @@ const AddUserForm = ({ addUser }) => {
   };
 
   return (
-    
+    <div style={{position: 'fixed', top:"0", "left": "0", width: '100%', height: '100vh', display: 'none', 'justifyContent': 'center', alignItems: 'center', backgroundColor: " rgba(19, 19, 19, 0.42)"}}>
     <form onSubmit={handleSubmit} style={{ "padding": "100px 300px", "borderRadius": "10px", backgroundColor: "#fff", display: 'flex', "flexDirection": "column", gap: "10px" }}>
     <h1>Personal Data</h1>
       <label>Name</label>
@@ -64,7 +64,7 @@ const AddUserForm = ({ addUser }) => {
 
   
 
-    
+    </div>
   );
 };
 
