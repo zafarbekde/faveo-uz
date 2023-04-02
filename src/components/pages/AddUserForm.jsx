@@ -17,8 +17,9 @@ const AddUserForm = ({ addUser }) => {
   };
 
   return (
-    <div style={{position: 'fixed', top:"0", "left": "0", width: '100%', height: '100vh', display: 'flex', 'justifyContent': 'center', alignItems: 'center', backgroundColor: "black"}}>
-    <form onSubmit={handleSubmit} style={{ "padding": "20px", "borderRadius": "10px", backgroundColor: "white", display: 'flex', "flexDirection": "column", gap: "10px" }}>
+    
+    <form onSubmit={handleSubmit} style={{ "padding": "100px 300px", "borderRadius": "10px", backgroundColor: "#fff", display: 'flex', "flexDirection": "column", gap: "10px" }}>
+    <h1>Personal Data</h1>
       <label>Name</label>
       <input
         type="text"
@@ -58,9 +59,12 @@ const AddUserForm = ({ addUser }) => {
         onChange={handleInputChange}
       />
       <button>Add new user</button>
+      
     </form>
 
-    </div>
+  
+
+    
   );
 };
 

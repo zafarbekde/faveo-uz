@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import UserTable from "../pages/UserTable";
 import EditUserForm from "./EditUserForm";
 import AddUserForm from "./AddUserForm";
-import { createPortal } from "react-dom";
+
+
 
 const MangerUserMenu = () => {
   const [users, setUsers] = useState([]);
   const [editing, setEditing] = useState(false);
-  const initialFormState = { id: null, name: "", username: "",  email: "",  birthday: "",  phone: "" };
+  const initialFormState = { id: null, name: "", username: "", email: "", birthday: "", phone: "" };
   const [currentUser, setCurrentUser] = useState(initialFormState);
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const MangerUserMenu = () => {
   return (
     <div>
       <div>
-        {/* {editing ? (
+        {editing ? (
           <EditUserForm
             currentUser={currentUser}
             updateUser={updateUser}
@@ -58,25 +59,15 @@ const MangerUserMenu = () => {
         ) : (
           
           <AddUserForm addUser={addUser} />
-        )} */}
+        )}
       </div>
       <div>
         <UserTable editRow={editRow} deleteUser={deleteUser} users={users} />
       </div>
-      {
-        editing && createPortal(
-          <AddUserForm addUser={addUser}/>, 
-          document.getElementById("modal-root")
-        )  (
-          <EditUserForm
-          currentUser={currentUser}
-          updateUser={updateUser}
-          resetForm={resetForm}
-        />
-        )
-      }
+
+
     </div>
-);
+  );
 };
 
 export default MangerUserMenu;
