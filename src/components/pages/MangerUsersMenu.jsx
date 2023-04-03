@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UserTable from "../pages/UserTable";
-import EditUserForm from "./EditUserForm";
-import AddUserForm from "./AddUserForm";
-
-
+import EditUserForm from "../pages/EditUserForm";
+import AddUserForm from "../pages/AddUserForm";
 
 const MangerUserMenu = () => {
   const [users, setUsers] = useState([]);
@@ -53,21 +51,17 @@ const MangerUserMenu = () => {
       <div>
         {editing ? (
           <EditUserForm
-         
             currentUser={currentUser}
             updateUser={updateUser}
             resetForm={resetForm}
           />
         ) : (
-
           <AddUserForm addUser={addUser} />
         )}
       </div>
       <div>
         <UserTable editRow={editRow} deleteUser={deleteUser} users={users} />
       </div>
-
-
     </div>
   );
 };
