@@ -40,7 +40,7 @@ const AddUserForm = ({ addUser }) => {
         <label className="form-label" htmlFor="birthday">
           Birthday:
         </label>
-        <input type="date" name="birthday" value={user.birthday} onChange={handleInputChange} />
+        <input type="text" name="birthday" value={user.birthday} onChange={handleInputChange} />
       </div>
       <div className="form-input">
         <label className="form-label" htmlFor="phone">

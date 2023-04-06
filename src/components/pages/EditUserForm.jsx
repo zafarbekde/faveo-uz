@@ -1,66 +1,89 @@
 import React, { useState, useEffect } from "react";
 
-const EditUserForm = ({ currentUser, updateUser, setEditing }) => {
-  const [user, setUser] = useState(currentUser);
+const EditUserForm = (props) => {
+  const [user, setUser] = useState(props.currentUser);
 
   useEffect(() => {
-    setUser(currentUser);
-  }, [currentUser]);
+    setUser(props.currentUser);
+  }, [props]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
     setUser({ ...user, [name]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    updateUser(user.id, user);
-    setEditing(false);
+
+    props.updateUser(user.id, user);
+    props.resetForm();
+  };
+
+  const handleDelete = () => {
+    props.deleteUser(user.id);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>Name</label>
-      <input
-        type="text"
-        name="name"
-        value={user.name}
-        onChange={handleInputChange}
-      />
-      <label>Username</label>
-      <input
-        type="text"
-        name="username"
-        value={user.username}
-        onChange={handleInputChange}
-      />
-      <label>Email</label>
-      <input
-        type="text"
-        name="email"
-        value={user.email}
-        onChange={handleInputChange}
-      />
-
-      <label>Birthday</label>
-      <input
-        type="text"
-        name="birthday"
-        value={user.birthday}
-        onChange={handleInputChange}
-      />
-
-      <label>Phone</label>
-      <input
-        type="text"
-        name="phone"
-        value={user.phone}
-        onChange={handleInputChange}
-      />
-      <button>Update user</button>
-      <button type="button" onClick={() => setEditing(false)}>
-        Cancel
-      </button>
+      <label>
+        Name:
+        <input
+          type="text"
+          name="name"
+          value={user.name}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        Username:
+        <input
+          type="text"
+          name="username"
+          value={user.username}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        Email:
+        <input
+          type="text"
+          name="email"
+          value={user.email}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        Birthday:
+        <input
+          type="text"
+          name="birthday"
+          value={user.birthday}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        Phone:
+        <input
+          type="text"
+          name="phone"
+          value={user.phone}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        Password:
+        <input
+          type="password"
+          name="password"
+          value={user.password}
+          onChange={handleInputChange}
+        />
+      </label>
+      <div>
+        <button type="submit">Save</button>
+        <button onClick={handleDelete}>Delete</button>
+      </div>
     </form>
   );
 };
