@@ -6,6 +6,7 @@ import AddUserForm from "../pages/AddUserForm";
 
 const UserTable = ({ users, deleteUser, editRow }) => {
   const [showAddUserModal, setShowAddUserModal] = useState(false);
+  
 
   const handleCloseAddUserModal = () => setShowAddUserModal(false);
   const handleShowAddUserModal = () => setShowAddUserModal(true);
@@ -67,7 +68,7 @@ const UserTable = ({ users, deleteUser, editRow }) => {
           <Modal.Title>Add User</Modal.Title>
         </Modal.Header>
         <Modal.Body className="modal">
-          <AddUserForm handleCloseModal={handleCloseAddUserModal} />
+          <AddUserForm addUser={users} handleCloseModal={handleCloseAddUserModal} />
         </Modal.Body>
       </Modal>
     </div>
