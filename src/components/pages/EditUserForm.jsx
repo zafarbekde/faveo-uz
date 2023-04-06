@@ -20,9 +20,7 @@ const EditUserForm = (props) => {
     props.resetForm();
   };
 
-  const handleDelete = () => {
-    props.deleteUser(user.id);
-  };
+  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -82,7 +80,7 @@ const EditUserForm = (props) => {
       </label>
       <div>
         <button type="submit">Save</button>
-        <button onClick={handleDelete}>Delete</button>
+       
       </div>
     </form>
   );

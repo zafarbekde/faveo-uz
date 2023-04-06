@@ -116,4 +116,10 @@
   .EditUserModal-button:active {
     background-color: #0b74ba;
   }
+
+
+
+  .table-responsive{
+    display: flex;
+  }
   

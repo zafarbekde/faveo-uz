@@ -1,21 +1,25 @@
-import React from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaEdit, FaTrashAlt, FaUserPlus } from "react-icons/fa";
+import { Modal } from "react-bootstrap";
 import '../../css/UserTable.css'
+import AddUserForm from "../pages/AddUserForm";
 
 const UserTable = ({ users, deleteUser, editRow }) => {
+  const [showAddUserModal, setShowAddUserModal] = useState(false);
+
+  const handleCloseAddUserModal = () => setShowAddUserModal(false);
+  const handleShowAddUserModal = () => setShowAddUserModal(true);
+
   return (
-    <div className="UserTable">
-      <table>
+    <div className="table-responsive">
+      <table className="table table-hover">
         <thead>
-          <tr className="table-list">
+          <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Username</th>
             <th>Email</th>
-            <th>Birthday</th>
-            <th>Phone</th>
-            {/* new table header cell */}
-            <th>Role</th>
+            <th>Password</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -24,28 +28,48 @@ const UserTable = ({ users, deleteUser, editRow }) => {
               <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.name}</td>
-                <td>{user.username}</td>
                 <td>{user.email}</td>
-                <td>{user.birthday}</td>
-                <td>{user.phone}</td>
-                {/* new table data cell */}
+                <td>{user.password}</td>
                 <td>
-                  <button className="icon-btn" onClick={() => editRow(user)}>
-                    <FaEdit />
-                  </button>
-                  <button className="icon-btn" onClick={() => deleteUser(user.id)}>
-                    <FaTrash />
-                  </button>
+                  <div className="d-flex justify-content-center">
+                    <button
+                      className="btn btn-primary btn-sm me-2"
+                      onClick={() => editRow(user)}
+                    >
+                      <FaEdit />
+                    </button>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => deleteUser(user.id)}
+                    >
+                      <FaTrashAlt />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan={7}>No users</td>
+              <td colSpan={5} className="text-center">
+                No Users
+              </td>
             </tr>
           )}
         </tbody>
       </table>
+      <div className="text-center">
+        <button className="btn btn-primary" onClick={handleShowAddUserModal}>
+          <FaUserPlus /> Add User
+        </button>
+      </div>
+      <Modal className="modall" show={showAddUserModal} onHide={handleCloseAddUserModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add User</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="modal">
+          <AddUserForm handleCloseModal={handleCloseAddUserModal} />
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };
