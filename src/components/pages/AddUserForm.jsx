@@ -1,74 +1,91 @@
 import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
-import { Button } from 'react-bootstrap';
 
-const AddUserForm = ({ addUser }, props) => {
-  const initialFormState = { id: null, name: "", username: "", email: "", birthday: "", phone: "" };
-  const [user, setUser] = useState(initialFormState);
+const AddUserForm = ({ addUser }) => {
+  const [user, setUser] = useState({
+    name: "",
+    username: "",
+    email: "",
+    birthday: "",
+    phone: "",
+  });
 
-  const handleInputChange = (event) => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    setUser({ ...user, [name]: value });
+    setUser((prevUser) => ({ ...prevUser, [name]: value }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!user.name || !user.username || !user.email || !user.birthday || !user.phone) return;
     addUser(user);
-    setUser(initialFormState);
+    setUser({ name: "", username: "", email: "", birthday: "", phone: "" });
   };
 
   return (
-    <Modal {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Personal Data
-        </Modal.Title>
-      </Modal.Header>
-
-      <Modal.Body>
-      <form className="form-container" onSubmit={handleSubmit}>
-        <div className="form-input">
-          <label className="form-label" htmlFor="name">
-            Name:
-          </label>
-          <input type="text" name="name" value={user.name} onChange={handleInputChange} />
-        </div>
-        <div className="form-input">
-          <label className="form-label" htmlFor="username">
-            Username:
-          </label>
-          <input type="text" name="username" value={user.username} onChange={handleInputChange} />
-        </div>
-        <div className="form-input">
-          <label className="form-label" htmlFor="email">
-            Email:
-          </label>
-          <input type="email" name="email" value={user.email} onChange={handleInputChange} />
-        </div>
-        <div className="form-input">
-          <label className="form-label" htmlFor="birthday">
-            Birthday:
-          </label>
-          <input type="text" name="birthday" value={user.birthday} onChange={handleInputChange} />
-        </div>
-        <div className="form-input">
-          <label className="form-label" htmlFor="phone">
-            Phone:
-          </label>
-          <input type="tel" name="phone" value={user.phone} onChange={handleInputChange} />
-        </div>
-        <button className="form-button">Add new user</button>
-      </form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-
-    </Modal>
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          className="form-control"
+          id="name"
+          name="name"
+          value={user.name}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          className="form-control"
+          id="username"
+          name="username"
+          value={user.username}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          className="form-control"
+          id="email"
+          name="email"
+          value={user.email}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="birthday">Birthday:</label>
+        <input
+          type="date"
+          className="form-control"
+          id="birthday"
+          name="birthday"
+          value={user.birthday}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="phone">Phone:</label>
+        <input
+          type="tel"
+          className="form-control"
+          id="phone"
+          name="phone"
+          value={user.phone}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <button type="submit" className="btn btn-primary">
+        Add User
+      </button>
+    </form>
   );
 };
 

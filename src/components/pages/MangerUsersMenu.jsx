@@ -1,90 +1,48 @@
-import React, { useState, useEffect } from "react";
-import UserTable from "../pages/UserTable";
-import EditUserForm from "../pages/EditUserForm";
-import AddUserForm from "../pages/AddUserForm";
-import { FaEdit, FaTrashAlt, FaUserPlus } from "react-icons/fa";
-import { Modal } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
+import React, { useState, useEffect } from 'react';
+import UserTable from './UserTable';
+import AddUserForm from './AddUserForm';
 
-
-
-const MangerUserMenu = () => {
-  const [users, setUsers] = useState([]);
-  const [editing, setEditing] = useState(false);
-  const initialFormState = { id: null, name: "", username: "", email: "", birthday: "", phone: "" };
-  const [currentUser, setCurrentUser] = useState(initialFormState);
-  const [modalShow, setModalShow] = React.useState(true);
-
-
-  useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem("users"));
-    if (storedUsers) {
-      setUsers(storedUsers);
+const MangerUsersMenu = () => {
+  const [users, setUsers] = useState(() => {
+    const savedUsers = localStorage.getItem('users');
+    if (savedUsers) {
+      return JSON.parse(savedUsers);
+    } else {
+      return [];
     }
-  }, []);
+  });
 
   useEffect(() => {
-    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem('users', JSON.stringify(users));
   }, [users]);
 
-  const addUser = (user) => {
-    user.id = users.length + 1;
-    setUsers([...users, user]);
+  const handleAddUser = newUser => {
+    setUsers([...users, { ...newUser, id: users.length + 1 }]);
   };
 
-  const deleteUser = (id) => {
-    setEditing(false);
-    setUsers(users.filter((user) => user.id !== id));
+  const handleEditUser = (id, updatedUser) => {
+    const updatedUsers = users.map(user => {
+      if (user.id === id) {
+        return { ...user, ...updatedUser };
+      } else {
+        return user;
+      }
+    });
+    setUsers(updatedUsers);
   };
 
-  const updateUser = (id, updatedUser) => {
-    setEditing(false);
-    setUsers(users.map((user) => (user.id === id ? updatedUser : user)));
-  };
-
-  const editRow = (user) => {
-    setEditing(true);
-    setCurrentUser({ id: user.id, name: user.name, username: user.username, email: user.email, birthday: user.birthday, phone: user.phone });
-  };
-
-  const resetForm = () => {
-    setEditing(false);
-    setCurrentUser(initialFormState);
+  const handleDeleteUser = id => {
+    setUsers(users.filter(user => user.id !== id));
   };
 
   return (
     <div>
-      <div>
-
-        {editing ? (
-          <EditUserForm
-            currentUser={currentUser}
-            updateUser={updateUser}
-            resetForm={resetForm}
-          />
-        ) : (
-          <AddUserForm show={modalShow}
-            onHide={() => setModalShow(true)} addUser={addUser} />
-        )}
-        <div className="text-center">
-          <Button variant="primary" onClick={() => setModalShow(true)}>
-            Launch vertically centered modal
-          </Button>
-        </div>
-        {/* <Modal className="modall" show={showAddUserModal} onHide={handleCloseAddUserModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Add User</Modal.Title>
-          </Modal.Header>
-          <Modal.Body className="modal">
-            <AddUserForm addUser={addUser} handleCloseModal={handleCloseAddUserModal} />
-          </Modal.Body>
-        </Modal> */}
-      </div>
-      <div>
-        <UserTable editRow={editRow} deleteUser={deleteUser} users={users} />
-      </div>
+      <h1>User Table</h1>
+      <AddUserForm  onAddUser={handleAddUser} />
+      <UserTable users={users} onDeleteUser={handleDeleteUser} onEditUser={handleEditUser} />
+      
     </div>
   );
 };
 
-export default MangerUserMenu;
+export default MangerUsersMenu;

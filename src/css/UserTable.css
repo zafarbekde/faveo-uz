@@ -8,7 +8,7 @@
   
   .UserTable th,
   .UserTable td {
-    padding: 0.8rem 35px;
+    padding: 0.8rem 28px;
     text-align: left;
     border-bottom: 1px solid #ddd;
     color: #7e7e7e;
@@ -16,7 +16,7 @@
   }
 
   .table-list{
-    padding: 300px;
+    padding: 30px;
   }
   
   .UserTable th {
