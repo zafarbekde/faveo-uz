@@ -43,11 +43,7 @@ const EditUserForm = (props) => {
   };
 
   return (
-    <Modal {...props} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>Edit User</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+   
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formName">
             <Form.Label>Name</Form.Label>
@@ -94,12 +90,14 @@ const EditUserForm = (props) => {
               onChange={handlePhoneChange}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button onChange={handleSubmit} variant="primary" type="submit">
             Save Changes
           </Button>
+          <Button variant="secondary" >
+          Close
+        </Button>
         </Form>
-      </Modal.Body>
-    </Modal>
+      
   );
 };
 

@@ -23,12 +23,12 @@ const UserTable = ({ users, updateUser }) => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>User ID</th>
-            <th>User Name</th>
-            <th>User Username</th>
-            <th>User Email</th>
-            <th>User Birthday</th>
-            <th>User Phone</th>
+            <th> ID</th>
+            <th> Name</th>
+            <th> Username</th>
+            <th> Email</th>
+            <th> Birthday</th>
+            <th> Phone</th>
             <th>Edit</th>
           </tr>
         </thead>
