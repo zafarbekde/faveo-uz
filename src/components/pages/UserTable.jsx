@@ -53,7 +53,7 @@ const UserTable = ({ users, updateUser }) => {
 
       <Modal show={showModal} onHide={handleCloseModal} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Edit User</Modal.Title>
+          <Modal.Title>Personal Data</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {selectedUser && (

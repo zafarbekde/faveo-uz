@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import '../../css/Modal.css'
 
 const EditUserForm = (props) => {
   const [name, setName] = useState(props.user.name);
@@ -43,61 +44,63 @@ const EditUserForm = (props) => {
   };
 
   return (
-   
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formName">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter name"
-              value={name}
-              onChange={handleNameChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="formUsername">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter username"
-              value={username}
-              onChange={handleUsernameChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="formEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={handleEmailChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="formBirthday">
-            <Form.Label>Birthday</Form.Label>
-            <Form.Control
-              type="date"
-              placeholder="Enter birthday"
-              value={birthday}
-              onChange={handleBirthdayChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="formPhone">
-            <Form.Label>Phone</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter phone"
-              value={phone}
-              onChange={handlePhoneChange}
-            />
-          </Form.Group>
-          <Button onChange={handleSubmit} variant="primary" type="submit">
-            Save Changes
-          </Button>
-          <Button variant="secondary" >
+    <div className="modala">
+
+      <Form className="modal-content" onSubmit={handleSubmit}>
+        <Form.Group  controlId="formName">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter name"
+            value={name}
+            onChange={handleNameChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="formUsername">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter username"
+            value={username}
+            onChange={handleUsernameChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="formEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={handleEmailChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="formBirthday">
+          <Form.Label>Birthday</Form.Label>
+          <Form.Control
+            type="date"
+            placeholder="Enter birthday"
+            value={birthday}
+            onChange={handleBirthdayChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="formPhone">
+          <Form.Label>Phone</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter phone"
+            value={phone}
+            onChange={handlePhoneChange}
+          />
+        </Form.Group>
+        <Button onChange={handleSubmit} variant="primary" type="submit">
+          Save Changes
+        </Button>
+        <Button variant="secondary" >
           Close
         </Button>
-        </Form>
-      
+      </Form>
+    </div>  
+
   );
 };
 

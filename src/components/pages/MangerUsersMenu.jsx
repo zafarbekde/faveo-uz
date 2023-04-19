@@ -7,7 +7,7 @@ function ManageUsersForm() {
 
   useEffect(() => {
     // fetch users from backend API and set state
-    axios.get('https://jsonplaceholder.typicode.com/users')
+    axios.get('/api/v1/users')
       .then(response => setUsers(response.data))
       .catch(error => console.error(error));
   }, []);
