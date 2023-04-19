@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import "../../css/Modal.css";
-import axios from "axios";
+import '../../css/Modal.css'
+import axios from 'axios';
 
 const EditUserForm = (props) => {
   const [name, setName] = useState(props.user.name);
@@ -9,21 +9,28 @@ const EditUserForm = (props) => {
   const [email, setEmail] = useState(props.user.email);
   const [birthday, setBirthday] = useState(props.user.birthday);
   const [phone, setPhone] = useState(props.user.phone);
-  const [formData, setFormData] = useState(props.userData);
 
   const handleFormSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission behavior
-    axios
-      .post(`http://localhost:2000/api/v1/users/${props.user.id}`, formData)
+    const updatedUser = {
+      name: name,
+      surname: surname,
+      email: email,
+      birthday: birthday,
+      phone: phone
+    };
+    axios.post(`http://localhost:2000/api/v1/users/${props.user.id}`, updatedUser)
       .then((response) => {
         console.log(response.data); // Handle successful response
+        props.onUserUpdated(response.data);
       })
       .catch((error) => {
         console.log(error); // Handle error
       });
   };
+
   return (
-    <Form className="modal-content">
+    <Form className="modal-content" onSubmit={handleFormSubmit}>
       <Form.Group controlId="formName">
         <Form.Label>Name</Form.Label>
         <Form.Control
@@ -33,11 +40,11 @@ const EditUserForm = (props) => {
           onChange={(e) => setName(e.target.value)}
         />
       </Form.Group>
-      <Form.Group controlId="formUsername">
+      <Form.Group controlId="formSurname">
         <Form.Label>Surname</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter username"
+          placeholder="Enter surname"
           value={surname}
           onChange={(e) => setSurname(e.target.value)}
         />
@@ -54,7 +61,7 @@ const EditUserForm = (props) => {
       <Form.Group controlId="formBirthday">
         <Form.Label>Birthday</Form.Label>
         <Form.Control
-          type="text"
+          type="date"
           placeholder="Enter birthday"
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
@@ -69,10 +76,7 @@ const EditUserForm = (props) => {
           onChange={(e) => setPhone(e.target.value)}
         />
       </Form.Group>
-      <form onSubmit={handleFormSubmit}>
-        {/* form fields */}
-        <button type="submit">Submit</button>
-      </form>
+      <Button type="submit">Submit</Button>
     </Form>
   );
 };
