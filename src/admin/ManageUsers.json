@@ -1,0 +1,88 @@
+{
+  "base_url": "/api/v1/users",
+  "authorization_required": true,
+  "required_role": "Admin",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/",
+      "description": "Retrieves all users",
+      "response": {
+        "message": "Retrive all users",
+        "users": [
+          {
+            "id": 5,
+            "email": "johndoe@gmail.com",
+            "name": "John",
+            "surname": "Doe",
+            "birthday": "10.01.1996",
+            "phone": "99891 123-45-67",
+            "role": "User"
+          }
+        ]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/:id/details",
+      "description": "Updates user details",
+      "request_body": {
+        "email": "johndoe@gmail.com",
+        "name": "John",
+        "surname": "Doe",
+        "birthday": "10.01.1996",
+        "phone": "99891 123-45-67"
+      },
+      "response": {
+        "message": "User info updated",
+        "user": {
+          "id": 5,
+          "email": "johndoe@gmail.com",
+          "name": "John",
+          "surname": "Doe",
+          "birthday": "10.01.1996",
+          "phone": "99891 123-45-67",
+          "role": "User"
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/:id/access",
+      "description": "Updates user access credentials",
+      "request_body": {
+        "password": "newPassword",
+        "role": "admin"
+      },
+      "response": {
+        "message": "User access credentials updated",
+        "user": {
+          "id": 5,
+          "email": "johndoe@gmail.com",
+          "name": "John",
+          "surname": "Doe",
+          "birthday": "10.01.1996",
+          "phone": "99891 123-45-67",
+          "role": "User"
+        }
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/:id",
+      "description": "Deletes user with id",
+      "response": {
+        "message": "User with id 5 deleted",
+        "user": {
+          "id": 5,
+          "email": "johndoe@gmail.com",
+          "name": "John",
+          "surname": "Doe",
+          "birthday": "10.01.1996",
+          "phone": "99891 123-45-67",
+          "role": "User"
+        }
+      }
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal } from 'react-bootstrap';
 import { FaEdit } from 'react-icons/fa';
 import EditUserForm from './EditUserForm';
+import axios from 'axios';
 import '../../css/UserTable.css'
 
 const UserTable = ({ updateUser }) => {
@@ -10,11 +11,18 @@ const UserTable = ({ updateUser }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(data => setUsers(data))
-      .catch(error => console.log(error));
+    axios.get('http://localhost:2000/api/v1/users')
+      .then(response => {
+        setUsers(response.data.routes[0].response.users);
+        
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }, []);
+  
+  
+
 
   const handleShowModal = (user) => {
     setSelectedUser(user);
@@ -26,6 +34,7 @@ const UserTable = ({ updateUser }) => {
     setShowModal(false);
   };
 
+
   return (
     <div className='UserTable'>
       <Table striped bordered hover>
@@ -33,7 +42,7 @@ const UserTable = ({ updateUser }) => {
           <tr>
             <th> ID</th>
             <th> Name</th>
-            <th> Username</th>
+            <th> Surname</th>
             <th> Email</th>
             <th> Birthday</th>
             <th> Phone</th>
@@ -45,11 +54,12 @@ const UserTable = ({ updateUser }) => {
             <tr key={user.id}>
               <td>{user.id}</td>
               <td>{user.name}</td>
-              <td>{user.username}</td>
+              <td>{user.surname}</td>
               <td>{user.email}</td>
               <td>{user.birthday}</td>
               <td>{user.phone}</td>
               <td>
+
                 <Button variant="primary" onClick={() => handleShowModal(user)}>
                   <FaEdit />
                 </Button>

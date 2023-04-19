@@ -34,7 +34,7 @@ const EditUserForm = (props) => {
     const updatedUser = {
       id: props.user.id,
       name,
-      username,
+      surname,
       email,
       birthday,
       phone
