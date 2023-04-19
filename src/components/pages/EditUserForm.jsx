@@ -1,51 +1,26 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import '../../css/Modal.css'
+import axios from 'axios';
 
 const EditUserForm = (props) => {
   const [name, setName] = useState(props.user.name);
-  const [username, setUsername] = useState(props.user.username);
+  const [surname, setSurname] = useState(props.user.surname);
   const [email, setEmail] = useState(props.user.email);
   const [birthday, setBirthday] = useState(props.user.birthday);
   const [phone, setPhone] = useState(props.user.phone);
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
+  const handleFormSubmit = (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+    axios.post(`http://localhost:2000/api/v1/users/${userId}`, formData)
+      .then((response) => {
+        console.log(response.data.routes[0].response.users); // Handle successful response
+      })
+      .catch((error) => {
+        console.log(error); // Handle error
+      });
   };
-
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handleBirthdayChange = (event) => {
-    setBirthday(event.target.value);
-  };
-
-  const handlePhoneChange = (event) => {
-    setPhone(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const updatedUser = {
-      id: props.user.id,
-      name,
-      surname,
-      email,
-      birthday,
-      phone
-    };
-    props.onUpdate(updatedUser);
-    props.onHide();
-  };
-
   return (
-    <div className="modala">
-
       <Form className="modal-content" onSubmit={handleSubmit}>
         <Form.Group  controlId="formName">
           <Form.Label>Name</Form.Label>
@@ -57,11 +32,11 @@ const EditUserForm = (props) => {
           />
         </Form.Group>
         <Form.Group controlId="formUsername">
-          <Form.Label>Username</Form.Label>
+          <Form.Label>Surname</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter username"
-            value={username}
+            value={surname}
             onChange={handleUsernameChange}
           />
         </Form.Group>
@@ -95,12 +70,7 @@ const EditUserForm = (props) => {
         <Button onChange={handleSubmit} variant="primary" type="submit">
           Save Changes
         </Button>
-        <Button variant="secondary" >
-          Close
-        </Button>
-      </Form>
-    </div>  
-
+      </Form> 
   );
 };
 

@@ -51,7 +51,7 @@ const UserTable = ({ updateUser }) => {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.id}>
+            <tr className='table-list' key={user.id}>
               <td>{user.id}</td>
               <td>{user.name}</td>
               <td>{user.surname}</td>
