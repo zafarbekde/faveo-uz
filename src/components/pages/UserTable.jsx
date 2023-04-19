@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal } from 'react-bootstrap';
 import { FaEdit } from 'react-icons/fa';
 import EditUserForm from './EditUserForm';
 import '../../css/UserTable.css'
 
-const UserTable = ({ users, updateUser }) => {
+const UserTable = ({ updateUser }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(data => setUsers(data))
+      .catch(error => console.log(error));
+  }, []);
 
   const handleShowModal = (user) => {
     setSelectedUser(user);
