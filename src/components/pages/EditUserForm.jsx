@@ -13,16 +13,16 @@ const EditUserForm = (props) => {
   const handleFormSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission behavior
     const updatedUser = {
-      name: name,
-      surname: surname,
-      email: email,
-      birthday: birthday,
-      phone: phone
+      name,
+      surname,
+      email,
+      birthday,
+      phone
     };
     axios.post(`http://localhost:2000/api/v1/users/${props.user.id}`, updatedUser)
       .then((response) => {
         console.log(response.data); // Handle successful response
-        props.onUserUpdated(response.data);
+        props.onUserUpdated(updatedUser); // Update the user data in the UserTable
       })
       .catch((error) => {
         console.log(error); // Handle error
@@ -76,7 +76,9 @@ const EditUserForm = (props) => {
           onChange={(e) => setPhone(e.target.value)}
         />
       </Form.Group>
-      <Button type="submit">Submit</Button>
+      <Button variant="primary" type="submit">
+        Save Changes
+      </Button>
     </Form>
   );
 };

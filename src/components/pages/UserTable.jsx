@@ -14,14 +14,14 @@ const UserTable = ({ updateUser }) => {
     axios.get('http://localhost:2000/api/v1/users')
       .then(response => {
         setUsers(response.data.routes[0].response.users);
-        
+
       })
       .catch(error => {
         console.log(error);
       });
   }, []);
-  
-  
+
+
 
 
   const handleShowModal = (user) => {
@@ -32,6 +32,16 @@ const UserTable = ({ updateUser }) => {
   const handleCloseModal = () => {
     setSelectedUser(null);
     setShowModal(false);
+  };
+
+  const handleUserUpdated = (updatedUser) => {
+    const updatedUsers = users.map((user) => {
+      if (user.id === updatedUser.id) {
+        return updatedUser;
+      }
+      return user;
+    });
+    setUsers(updatedUsers);
   };
 
 
@@ -79,6 +89,7 @@ const UserTable = ({ updateUser }) => {
               user={selectedUser}
               handleCloseModal={handleCloseModal}
               updateUser={updateUser}
+              onUserUpdated={handleUserUpdated}
             />
           )}
         </Modal.Body>
