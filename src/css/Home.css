@@ -54,6 +54,8 @@
 }
 
 .user-about{
+    border-collapse: collapse;
+  border-spacing: 0;
     width: 100%;
     padding: 31px;
     background: #fff;

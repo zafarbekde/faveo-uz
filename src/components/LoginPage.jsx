@@ -1,57 +1,70 @@
 import React, { useState } from "react";
 import '../css/LoginPage.css'
 import HomePage from "./HomePage";
+import { Modal, Button, Form } from "react-bootstrap";
+import axios from "axios";
 
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Replace with your own logic for verifying credentials
-    if (email === "fuckyou@gmail.com" && password === "1234") {
-      setLoggedIn(true);
-    } else {
-      alert("Incorrect email or password");
-    }
+  const handleLogin = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:8000/api/v1/auth", { email, password })
+      .then((response) => {
+        setModalMessage(response.data.authEndpoints.requestBody);
+        
+        setShowModal(true);
+      })
+      .catch((error) => {
+        setModalMessage(error.response.data.authEndpoints.requestBody);
+        setShowModal(true);
+      });
   };
-
-  if (loggedIn) {
-    return <HomePage />;
-  }
-
   return (
-    <div className="login-page">
-      <h1 className="">Faveo</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="login">
-          <h1>Login</h1>
-          <div className="input">
-            <input
-              type="email"
-              placeholder="Email"
-              id="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              id="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              required
-            />
-          </div>
-          <button className="login-btn" type="submit">Login</button>
-        </div>
+    <>
+      <Form onSubmit={handleLogin}>
+        <Form.Group controlId="formEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Form.Group>
 
-      </form>
-    </div>
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
+      </Form>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Login Result</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 
