@@ -7,14 +7,13 @@ function ManageUsersForm() {
 
   useEffect(() => {
     // fetch users from backend API and set state
-    axios.get('/api/v1/users')
+    axios.get('admin/ManageUsers/api/v1/users')
       .then(response => setUsers(response.data))
       .catch(error => console.error(error));
   }, []);
 
   return (
     <div>
-      <h2>Manage Users</h2>
       <UserTable users={users} />
     </div>
   );
