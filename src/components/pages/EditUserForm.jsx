@@ -1,31 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import '../../css/Modal.css'
-import axios from 'axios';
+import axios from "axios";
 
 const EditUserForm = (props) => {
-  const [name, setName] = useState(props.user.name);
-  const [surname, setSurname] = useState(props.user.surname);
-  const [email, setEmail] = useState(props.user.email);
-  const [birthday, setBirthday] = useState(props.user.birthday);
-  const [phone, setPhone] = useState(props.user.phone);
+  const [user, setUser] = useState(props.user);
+
+  // Update the state when the user data changes
+  useEffect(() => {
+    console.log("User data changed:", user);
+    setUser(props.user);
+  }, [props.user]);
 
   const handleFormSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission behavior
-    const updatedUser = {
-      name,
-      surname,
-      email,
-      birthday,
-      phone
-    };
-    axios.post(`http://localhost:2000/api/v1/users/${props.user.id}`, updatedUser)
+    console.log("Submitting user data:", user);
+    axios
+      .post(`https://jsonplaceholder.typicode.com/users/${user.id}`, user)
       .then((response) => {
-        console.log(response.data); // Handle successful response
-        props.onUserUpdated(updatedUser); // Update the user data in the UserTable
+        console.log("Server response:", response.data); // Handle successful response
+        props.onUserUpdated(user); // Update the user data in the UserTable
       })
       .catch((error) => {
-        console.log(error); // Handle error
+        console.log("Server error:", error); // Handle error
       });
   };
 
@@ -36,8 +33,8 @@ const EditUserForm = (props) => {
         <Form.Control
           type="text"
           placeholder="Enter name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={user.name}
+          onChange={(e) => setUser({ ...user, name: e.target.value })}
         />
       </Form.Group>
       <Form.Group controlId="formSurname">
@@ -45,8 +42,8 @@ const EditUserForm = (props) => {
         <Form.Control
           type="text"
           placeholder="Enter surname"
-          value={surname}
-          onChange={(e) => setSurname(e.target.value)}
+          value={user.surname}
+          onChange={(e) => setUser({ ...user, surname: e.target.value })}
         />
       </Form.Group>
       <Form.Group controlId="formEmail">
@@ -54,8 +51,8 @@ const EditUserForm = (props) => {
         <Form.Control
           type="email"
           placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={user.email}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
         />
       </Form.Group>
       <Form.Group controlId="formBirthday">
@@ -63,8 +60,8 @@ const EditUserForm = (props) => {
         <Form.Control
           type="date"
           placeholder="Enter birthday"
-          value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
+          value={user.birthday}
+          onChange={(e) => setUser({ ...user, birthday: e.target.value })}
         />
       </Form.Group>
       <Form.Group controlId="formPhone">
@@ -72,8 +69,8 @@ const EditUserForm = (props) => {
         <Form.Control
           type="text"
           placeholder="Enter phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          value={user.phone}
+          onChange={(e) => setUser({ ...user, phone: e.target.value })}
         />
       </Form.Group>
       <Button variant="primary" type="submit">

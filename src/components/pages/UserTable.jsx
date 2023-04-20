@@ -11,9 +11,9 @@ const UserTable = ({ updateUser }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:2000/api/v1/users')
+    axios.get('https://jsonplaceholder.typicode.com/users/')
       .then(response => {
-        setUsers(response.data.routes[0].response.users);
+        setUsers(response.data);
 
       })
       .catch(error => {
