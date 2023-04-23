@@ -24,7 +24,7 @@ const EditUserForm = (props) => {
       birthday: user.birthday,
       phone: user.phone,
     });
-  }, [props.user]);
+  }, [props.user]); 
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -33,6 +33,7 @@ const EditUserForm = (props) => {
       .then((response) => {
         console.log(response.data.routes[0].response.users);
         setUser(updatedUser);
+        console.log(updatedUser);
         props.onUserUpdated(updatedUser);
       })
       .catch((error) => {
