@@ -11,12 +11,13 @@ const UserTable = ({ updateUser }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/users/')
+    axios.get('http://localhost:2000/api/v1/users/')
       .then(response => {
-        setUsers(response.data);
+        
+        setUsers(response.data.routes[0].response.users);
 
       })
-      .catch(error => {
+      .catch(error => { 
         console.log(error);
       });
   }, []);
@@ -72,7 +73,7 @@ const UserTable = ({ updateUser }) => {
 
                 <Button variant="primary" onClick={() => handleShowModal(user)}>
                   <FaEdit />
-                </Button>
+                </Button> 
               </td>
             </tr>
           ))}

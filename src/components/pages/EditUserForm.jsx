@@ -5,6 +5,14 @@ import axios from "axios";
 
 const EditUserForm = (props) => {
   const [user, setUser] = useState(props.user);
+  const [currentUser, setCurrentUser] = useState(props.user);
+  const [updatedUser, setUpdatedUser] = useState({
+    name: currentUser.name,
+    surname: currentUser.surname,
+    email: currentUser.email,
+    birthday: currentUser.birthday,
+    phone: currentUser.phone,
+  });
 
   // Update the state when the user data changes
   useEffect(() => {
@@ -13,18 +21,20 @@ const EditUserForm = (props) => {
   }, [props.user]);
 
   const handleFormSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-    console.log("Submitting user data:", user);
+    event.preventDefault();
     axios
-      .post(`https://jsonplaceholder.typicode.com/users/${user.id}`, user)
+      .put(`http://localhost:2000/api/v1/users/${currentUser.id}`, updatedUser)
       .then((response) => {
-        console.log("Server response:", response.data); // Handle successful response
-        props.onUserUpdated(user); // Update the user data in the UserTable
+        console.log(response.data.routes[0].response.users);
+        setCurrentUser(updatedUser);
+        props.onUserUpdated(updatedUser);
       })
       .catch((error) => {
-        console.log("Server error:", error); // Handle error
+        console.log(error);
+        // handle the error here, for example by displaying an error message to the user
       });
   };
+
 
   return (
     <Form className="modal-content" onSubmit={handleFormSubmit}>
@@ -33,8 +43,13 @@ const EditUserForm = (props) => {
         <Form.Control
           type="text"
           placeholder="Enter name"
-          value={user.name}
-          onChange={(e) => setUser({ ...user, name: e.target.value })}
+          value={updatedUser.name}
+          onChange={(e) =>
+            setUpdatedUser({
+              ...updatedUser,
+              name: e.target.value,
+            })
+          }
         />
       </Form.Group>
       <Form.Group controlId="formSurname">
@@ -42,26 +57,41 @@ const EditUserForm = (props) => {
         <Form.Control
           type="text"
           placeholder="Enter surname"
-          value={user.surname}
-          onChange={(e) => setUser({ ...user, surname: e.target.value })}
+          value={updatedUser.surname}
+          onChange={(e) =>
+            setUpdatedUser({
+              ...updatedUser,
+              surname: e.target.value,
+            })
+          }
         />
       </Form.Group>
       <Form.Group controlId="formEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control
-          type="email"
+          type="text"
           placeholder="Enter email"
-          value={user.email}
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          value={updatedUser.email}
+          onChange={(e) =>
+            setUpdatedUser({
+              ...updatedUser,
+              email: e.target.value,
+            })
+          }
         />
       </Form.Group>
       <Form.Group controlId="formBirthday">
         <Form.Label>Birthday</Form.Label>
         <Form.Control
-          type="date"
+          type="text"
           placeholder="Enter birthday"
-          value={user.birthday}
-          onChange={(e) => setUser({ ...user, birthday: e.target.value })}
+          value={updatedUser.birthday}
+          onChange={(e) =>
+            setUpdatedUser({
+              ...updatedUser,
+              birthday: e.target.value,
+            })
+          }
         />
       </Form.Group>
       <Form.Group controlId="formPhone">
@@ -69,11 +99,16 @@ const EditUserForm = (props) => {
         <Form.Control
           type="text"
           placeholder="Enter phone"
-          value={user.phone}
-          onChange={(e) => setUser({ ...user, phone: e.target.value })}
+          value={updatedUser.phone}
+          onChange={(e) =>
+            setUpdatedUser({
+              ...updatedUser,
+              phone: e.target.value,
+            })
+          }
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" onClick={handleFormSubmit}>
         Save Changes
       </Button>
     </Form>

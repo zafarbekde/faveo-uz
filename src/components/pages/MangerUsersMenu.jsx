@@ -17,9 +17,9 @@ function ManageUsersForm() {
   
 
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/users/')
+    axios.get('http://localhost:2000/api/v1/users/')
       .then(response => {
-        setUsers(response.data);
+        setUsers(response.data.routes[0].response.users);
         
       })
       .catch(error => {
