@@ -5,28 +5,34 @@ import axios from "axios";
 
 const EditUserForm = (props) => {
   const [user, setUser] = useState(props.user);
-  const [currentUser, setCurrentUser] = useState(props.user);
   const [updatedUser, setUpdatedUser] = useState({
-    name: currentUser.name,
-    surname: currentUser.surname,
-    email: currentUser.email,
-    birthday: currentUser.birthday,
-    phone: currentUser.phone,
+    name: user.name,
+    surname: user.surname,
+    email: user.email,
+    birthday: user.birthday,
+    phone: user.phone,
   });
 
   // Update the state when the user data changes
   useEffect(() => {
     console.log("User data changed:", user);
     setUser(props.user);
+    setUpdatedUser({
+      name: user.name,
+      surname: user.surname,
+      email: user.email,
+      birthday: user.birthday,
+      phone: user.phone,
+    });
   }, [props.user]);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`http://localhost:2000/api/v1/users/${currentUser.id}`, updatedUser)
+      .put(`http://localhost:2000/api/v1/users/${user.id}`, updatedUser)
       .then((response) => {
         console.log(response.data.routes[0].response.users);
-        setCurrentUser(updatedUser);
+        setUser(updatedUser);
         props.onUserUpdated(updatedUser);
       })
       .catch((error) => {
