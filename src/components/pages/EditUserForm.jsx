@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
-import '../../css/Modal.css'
+import { Button, Form } from "react-bootstrap";
 import axios from "axios";
 
 const EditUserForm = (props) => {
@@ -13,38 +12,33 @@ const EditUserForm = (props) => {
     phone: user.phone,
   });
 
-  // Update the state when the user data changes
   useEffect(() => {
-    console.log("User data changed:", user);
     setUser(props.user);
     setUpdatedUser({
-      name: user.name,
-      surname: user.surname,
-      email: user.email,
-      birthday: user.birthday,
-      phone: user.phone,
+      name: props.user.name,
+      surname: props.user.surname,
+      email: props.user.email,
+      birthday: props.user.birthday,
+      phone: props.user.phone,
     });
-  }, [props.user]); 
+  }, [props.user]);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`http://localhost:2000/api/v1/users/${user.id}`, updatedUser)
+      .put(`http://localhost:8080/api/v1/users/${user.id}`, updatedUser)
       .then((response) => {
-        console.log(response.data.routes[0].response.users);
+        console.log(response.data);
         setUser(updatedUser);
-        console.log(updatedUser);
         props.onUserUpdated(updatedUser);
       })
       .catch((error) => {
         console.log(error);
-        // handle the error here, for example by displaying an error message to the user
       });
   };
 
-
   return (
-    <Form className="modal-content" onSubmit={handleFormSubmit}>
+    <Form onSubmit={handleFormSubmit}>
       <Form.Group controlId="formName">
         <Form.Label>Name</Form.Label>
         <Form.Control
@@ -52,10 +46,7 @@ const EditUserForm = (props) => {
           placeholder="Enter name"
           value={updatedUser.name}
           onChange={(e) =>
-            setUpdatedUser({
-              ...updatedUser,
-              name: e.target.value,
-            })
+            setUpdatedUser({ ...updatedUser, name: e.target.value })
           }
         />
       </Form.Group>
@@ -66,10 +57,7 @@ const EditUserForm = (props) => {
           placeholder="Enter surname"
           value={updatedUser.surname}
           onChange={(e) =>
-            setUpdatedUser({
-              ...updatedUser,
-              surname: e.target.value,
-            })
+            setUpdatedUser({ ...updatedUser, surname: e.target.value })
           }
         />
       </Form.Group>
@@ -80,10 +68,7 @@ const EditUserForm = (props) => {
           placeholder="Enter email"
           value={updatedUser.email}
           onChange={(e) =>
-            setUpdatedUser({
-              ...updatedUser,
-              email: e.target.value,
-            })
+            setUpdatedUser({ ...updatedUser, email: e.target.value })
           }
         />
       </Form.Group>
@@ -94,10 +79,7 @@ const EditUserForm = (props) => {
           placeholder="Enter birthday"
           value={updatedUser.birthday}
           onChange={(e) =>
-            setUpdatedUser({
-              ...updatedUser,
-              birthday: e.target.value,
-            })
+            setUpdatedUser({ ...updatedUser, birthday: e.target.value })
           }
         />
       </Form.Group>
@@ -108,14 +90,11 @@ const EditUserForm = (props) => {
           placeholder="Enter phone"
           value={updatedUser.phone}
           onChange={(e) =>
-            setUpdatedUser({
-              ...updatedUser,
-              phone: e.target.value,
-            })
+            setUpdatedUser({ ...updatedUser, phone: e.target.value })
           }
         />
       </Form.Group>
-      <Button variant="primary" type="submit" onClick={handleFormSubmit}>
+      <Button variant="primary" type="submit">
         Save Changes
       </Button>
     </Form>

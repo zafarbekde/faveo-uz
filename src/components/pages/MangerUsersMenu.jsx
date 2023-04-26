@@ -8,7 +8,7 @@ function ManageUsersForm() {
   const handleUserUpdated = (updatedUser) => {
     const updatedUsers = users.map((user) => {
       if (user.id === updatedUser.id) {
-        return updatedUser;
+        return updatedUser; 
       }
       return user;
     });
@@ -17,15 +17,14 @@ function ManageUsersForm() {
   
 
   useEffect(() => {
-    axios.get('http://localhost:2000/api/v1/users/')
-      .then(response => {
-        setUsers(response.data.routes[0].response.users);
-        
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+  axios.get('http://localhost:8080/api/v1/users')
+    .then(response => {
+      setUsers(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}, []);
 
   return (
     <div>
