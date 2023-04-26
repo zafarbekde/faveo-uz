@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useQuery } from 'react-query';
 import UserTable from './UserTable';
 
 function ManageUsersForm() {
@@ -16,15 +16,13 @@ function ManageUsersForm() {
   };
   
 
-  useEffect(() => {
-  axios.get('http://localhost:8080/api/v1/users')
-    .then(response => {
-      setUsers(response.data);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-}, []);
+  const { isLoading, error, data } = useQuery('users', () =>
+    fetch('http://localhost:8080/api/v1/users').then((res) => res.json())
+  );
+
+  if (isLoading) return 'Loading...';
+
+  if (error) return `An error has occurred: ${error.message}`;
 
   return (
     <div>

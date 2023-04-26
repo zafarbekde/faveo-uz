@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal } from 'react-bootstrap';
 import { FaEdit } from 'react-icons/fa';
+import { useQuery } from 'react-query';
 import EditUserForm from './EditUserForm';
-import axios from 'axios';
+
 import '../../css/UserTable.css'
 
 const UserTable = ({ updateUser }) => {
@@ -10,17 +11,14 @@ const UserTable = ({ updateUser }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/v1/users/')
-      .then(response => {
-        
-        setUsers(response.data);
+  const { isLoading, error, data } = useQuery('users', () =>
+    fetch('http://localhost:8080/api/v1/users').then((res) => res.json())
+  );
 
-      })
-      .catch(error => { 
-        console.log(error);
-      });
-  }, []);
+  if (isLoading) return 'Loading...';
+
+  if (error) return `An error has occurred: ${error.message}`;
+
 
 
 
@@ -73,7 +71,7 @@ const UserTable = ({ updateUser }) => {
 
                 <Button variant="primary" onClick={() => handleShowModal(user)}>
                   <FaEdit />
-                </Button> 
+                </Button>
               </td>
             </tr>
           ))}
