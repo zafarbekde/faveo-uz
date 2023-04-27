@@ -12,7 +12,7 @@ function ManageUsersForm() {
       }
       return user;
     });
-    setUsers(updatedUsers);
+    setUsers(updatedUsers); 
   };
   
 
