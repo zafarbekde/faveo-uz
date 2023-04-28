@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Table, Button, Modal } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap.css';
 import { FaEdit } from 'react-icons/fa';
 import { useQuery } from 'react-query';
 import EditUserForm from './EditUserForm';

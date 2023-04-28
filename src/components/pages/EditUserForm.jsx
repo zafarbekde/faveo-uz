@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import axios from "axios";
+import '../../css/Modal.css'
 import { useMutation } from 'react-query';
 
 
