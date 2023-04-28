@@ -1,42 +1,60 @@
 /* UserTable styles */
 .UserTable {
-    width: 100%;
-    padding: 0;
-    margin: 1rem 0;
-    border-collapse: collapse;
-  }
+  width: auto;
+  padding: 0;
+  margin: 1rem 0;
 
-  
-  .UserTable th,
-  .UserTable td {
-    padding: 0.8rem 50px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    color: #7e7e7e;
-   
-  }
+}
 
-  .table-list{
-    padding: 300px;
-  }
-  
-  .UserTable th {
-    background-color: #f5f5f5;
-    font-weight: bold;
-  }
-  
-  .UserTable tbody tr:hover {
-    background-color: #f5f5f5;
-  }
-  
-  .UserTable .edit-icon {
-    color: #2196F3;
-    cursor: pointer;
-    margin-right: 0.5rem;
-  }
-  
- 
-  .table-responsive{
-    display: flex;
-  }
-  
+.UserTable tr{
+  display: flex;
+}
+
+.UserTable tbody tr{
+  display: flex;
+  width: 100%;
+}
+.UserTable th {
+  padding: 0.8rem 50px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color: #7e7e7e;
+}
+
+.UserTable td {
+  padding: 0.8rem 50px;
+  border-bottom: 1px solid #ddd;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #7E7E7E;
+}
+
+
+
+.table-list {
+  width: 100%;
+}
+
+.UserTable th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.UserTable tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.UserTable .edit-icon {
+  color: #2196F3;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+
+.table-responsive {
+  display: flex;
+}

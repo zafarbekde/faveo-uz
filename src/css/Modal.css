@@ -34,3 +34,35 @@
     cursor: pointer;
   }
   
+
+
+  /* Modal.css */
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+  margin-top: 10px;
+}
+
+
+.EditUserForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.EditUserForm input[type="text"] {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.EditUserForm button[type="submit"] {
+  width: 100%;
+  margin-top: 1rem;
+}

@@ -47,7 +47,7 @@ if (error) return `An error has occurred: ${error.message}`;
 
   return (
     <div className='UserTable'>
-      <Table striped bordered hover>
+      <Table  striped bordered hover>
         <thead>
           <tr>
             <th> ID</th>

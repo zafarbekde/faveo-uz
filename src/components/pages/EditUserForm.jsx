@@ -33,53 +33,53 @@ const EditUserForm = (props) => {
   };
 
   return (
-    <Form onSubmit={handleFormSubmit}>
+    <Form className="EditUserForm" onSubmit={handleFormSubmit}>
       <Form.Group controlId="formName">
-        <Form.Label>Name</Form.Label>
+        <Form.Label className="form-label">Name</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter name"
+          placeholder="Name"
           value={updatedUser.name}
           onChange={(e) => setUpdatedUser({ ...updatedUser, name: e.target.value })}
         />
       </Form.Group>
       <Form.Group controlId="formSurname">
-        <Form.Label>Surname</Form.Label>
+        <Form.Label className="form-label">Surname</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter surname"
+          placeholder="Surname"
           value={updatedUser.surname}
           onChange={(e) => setUpdatedUser({ ...updatedUser, surname: e.target.value })}
         />
       </Form.Group>
       <Form.Group controlId="formEmail">
-        <Form.Label>Email</Form.Label>
+        <Form.Label className="form-label">Email</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter email"
+          placeholder="Email"
           value={updatedUser.email}
           onChange={(e) => setUpdatedUser({ ...updatedUser, email: e.target.value })}
         />
       </Form.Group>
       <Form.Group controlId="formBirthday">
-        <Form.Label>Birthday</Form.Label>
+        <Form.Label className="form-label">Birthday</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter birthday"
+          placeholder="Birthday"
           value={updatedUser.birthday}
           onChange={(e) => setUpdatedUser({ ...updatedUser, name: e.target.value })}
         />
       </Form.Group>
       <Form.Group controlId="formPhone">
-        <Form.Label>Phone</Form.Label>
+        <Form.Label className="form-label">Phone</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter phone"
+          placeholder="Phone"
           value={updatedUser.phone}
           onChange={(e) => setUpdatedUser({ ...updatedUser, phone: e.target.value })}
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button className="btn-primary" variant="primary" type="submit">
         Save Changes
       </Button>
     </Form>
