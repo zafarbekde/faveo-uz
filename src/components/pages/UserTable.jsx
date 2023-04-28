@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Table, Button, Modal } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import { FaEdit } from 'react-icons/fa';
 import { useQuery } from 'react-query';
 import EditUserForm from './EditUserForm';
@@ -12,12 +14,13 @@ const UserTable = ({ updateUser }) => {
   const [users, setUsers] = useState([]);
 
   const { isLoading, error, data } = useQuery('users', () =>
-    fetch('http://localhost:8080/api/v1/users').then((res) => res.json())
-  );
+  fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json())
+);
 
-  if (isLoading) return 'Loading...';
+if (isLoading) return 'Loading...';
 
-  if (error) return `An error has occurred: ${error.message}`;
+if (error) return `An error has occurred: ${error.message}`;
+
 
 
 
@@ -59,7 +62,7 @@ const UserTable = ({ updateUser }) => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {data.map((user) => (
             <tr className='table-list' key={user.id}>
               <td>{user.id}</td>
               <td>{user.name}</td>

@@ -17,7 +17,7 @@ function ManageUsersForm() {
   
 
   const { isLoading, error, data } = useQuery('users', () =>
-    fetch('http://localhost:8080/api/v1/users').then((res) => res.json())
+    fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json())
   );
 
   if (isLoading) return 'Loading...';
