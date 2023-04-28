@@ -1,4 +1,4 @@
-.home{
+.home {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,7 +6,7 @@
     background: crimson;
 }
 
-.head{
+.head {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,26 +16,26 @@
 
 
 
-.wrapper{
+.wrapper {
     display: flex;
     height: 100vh;
-    
+
 }
 
-.wrapper .dashboard{
-    width: 223px;
+.wrapper .dashboard {
+    width: 250px;
     display: flex;
     justify-content: center;
     background: #FBFBFB;
 }
 
-.dashboard-list{
+.dashboard-list {
     width: 100%;
     list-style-type: none;
     cursor: pointer;
 }
 
-.dashboard-list .list-item{
+.dashboard-list .list-item {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -45,20 +45,26 @@
 }
 
 
-.dashboard-list .list-item:hover{
+.dashboard-list .list-item {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #7E7E7E;
+}
+
+
+.dashboard-list .list-item:hover {
     background-color: #F0F0F0;
 }
 
-.users{
+.users {
     width: 20px;
 }
 
-.user-about{
+.user-about {
     border-collapse: collapse;
-  border-spacing: 0;
+    border-spacing: 0;
     width: 100%;
     padding: 31px;
     background: #fff;
 }
-
-
