@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import UserTable from './UserTable';
 
@@ -16,7 +16,7 @@ function ManageUsersForm() {
   };
   
 
-  const { isLoading, error, data } = useQuery('users', () =>
+  const { isLoading, error } = useQuery('users', () =>
     fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json())
   );
 

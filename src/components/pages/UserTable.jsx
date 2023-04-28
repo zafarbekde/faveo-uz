@@ -50,7 +50,7 @@ if (error) return `An error has occurred: ${error.message}`;
       <Table  striped bordered hover>
         <thead>
           <tr>
-            <th> ID</th>
+            <th> Id</th>
             <th> Name</th>
             <th> Surname</th>
             <th> Email</th>
