@@ -25,7 +25,7 @@ function ManageUsersForm() {
   if (error) return `An error has occurred: ${error.message}`;
 
   return (
-    <div>
+    <div> 
       <UserTable users={users}  onUserUpdated={handleUserUpdated} />
     </div>
   );
