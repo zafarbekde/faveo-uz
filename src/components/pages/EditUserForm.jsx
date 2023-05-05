@@ -16,7 +16,7 @@ const EditUserForm = (props) => {
   });
 
   const updateUser = useMutation((updatedUser) => {
-    return axios.put(`https://jsonplaceholder.typicode.com/users${user.id}`, updatedUser);
+    return axios.put(`http://localhost:8080/api/v1/users${user.id}`, updatedUser);
   });
 
   const handleFormSubmit = (event) => {
