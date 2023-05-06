@@ -11,7 +11,7 @@ function ManageUsersForm() {
         return updatedUser; 
       }
       return user;
-    });
+    }); 
     setUsers(updatedUsers); 
   };
   
