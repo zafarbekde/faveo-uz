@@ -8,7 +8,7 @@ const useApi = () => {
   const queryClient = useQueryClient();
 
   const axiosInstance = axios.create({
-    baseURL: 'your-api-url',
+    baseURL: 'localhost:8080/api/v1/auth',
     headers: {
       Authorization: `Bearer ${cookies.accessToken}`,
     },
