@@ -1,61 +1,37 @@
-import React, { useState } from "react";
-import "../css/LoginPage.css";
-import HomePage from "./HomePage";
+// components/Login.js
+import React, { useState } from 'react';
+import useAuth from '../hooks/useAuth';
 
-const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { login } = useAuth();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Replace with your own logic for verifying credentials
-    if (email === "you@gmail.com" && password === "1234") {
-      setLoggedIn(true);
-    } else {
-      alert("Incorrect email or password");
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(email, password);
   };
 
   return (
-    <>
-      {loggedIn ? (
-        <HomePage />
-      ) : (
-        <div className="login-page">
-          <h1 className="">Faveo</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="login">
-              <h1>Login</h1>
-              <div className="input">
-                <input
-                  type="email"
-                  placeholder="Email"
-                  id="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  required
-                />
-
-                <input
-                  type="password"
-                  placeholder="Password"
-                  id="password"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  required
-                />
-              </div>
-              <button className="login-btn" type="submit">
-                Login
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
-    </>
+    <div>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 };
 
-export default LoginPage;
+export default Login;
