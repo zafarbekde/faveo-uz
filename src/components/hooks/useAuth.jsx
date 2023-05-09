@@ -1,4 +1,4 @@
-// hooks/useAuth.js
+
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 

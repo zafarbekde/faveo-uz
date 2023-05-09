@@ -1,6 +1,6 @@
 // components/Login.js
 import React, { useState } from 'react';
-import useAuth from '../hooks/useAuth';
+import useAuth from '../components/hooks/useAuth';
 
 const Login = () => {
   const [email, setEmail] = useState('');

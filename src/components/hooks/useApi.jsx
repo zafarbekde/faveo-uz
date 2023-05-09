@@ -1,4 +1,4 @@
-// hooks/useApi.js
+
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
