@@ -21,15 +21,15 @@ const useAuth = () => {
     });
 
     if (response.data.accessToken && response.data.refreshToken) {
-      setCookie('accessToken', response.data.accessToken, { path: '/' });
-      setCookie('refreshToken', response.data.refreshToken, { path: '/' });
+      setCookie('accessToken', response.data.accessToken, { path: '/api/v1/users' });
+      setCookie('refreshToken', response.data.refreshToken, { path: '/login' });
       setIsAuthenticated(true);
     }
   };
 
   const logout = () => {
-    removeCookie('accessToken', { path: '/' });
-    removeCookie('refreshToken', { path: '/' });
+    removeCookie('accessToken', { path: '/login' });
+    removeCookie('refreshToken', { path: '/login' });
     setIsAuthenticated(false);
   };
 
