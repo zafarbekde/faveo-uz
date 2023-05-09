@@ -12,20 +12,20 @@ function ManageUsersForm() {
       }
       return user;
     }); 
-    setUsers(updatedUsers); 
+    setUsers(updatedUsers);
   };
-  
+  nnhh
 
   const { isLoading, error } = useQuery('users', () =>
     fetch('http://localhost:8080/api/v1/users').then((res) => res.json())
   );
-
   if (isLoading) return 'Loading...';
 
   if (error) return `An error has occurred: ${error.message}`;
 
   return (
     <div> 
+      <div className=""></div>
       <UserTable users={users}  onUserUpdated={handleUserUpdated} />
     </div>
   );
