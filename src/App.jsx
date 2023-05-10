@@ -13,12 +13,12 @@ function App() {
     <CookiesProvider>
       <QueryClientProvider client={queryClient}>
         <Router>
-          <Switch>
+          
             <Route exact path="/" render={() => <Redirect to="/login" />} />
             <Route path="/login" component={Login} />
             <ProtectedRoute path="/protected" component={ProtectedComponent} />
             <Route path="*" render={() => <Redirect to="/login" />} />
-          </Switch>
+          
         </Router>
       </QueryClientProvider>
     </CookiesProvider>
